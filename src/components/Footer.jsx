@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+
 export default function Footer() {
   const [email, setEmail] = useState('')
 
@@ -24,7 +26,12 @@ export default function Footer() {
                 Charity helps reduce suffering and builds unity in society. Together we can make a difference.
               </p>
               <div className="flex flex-wrap items-center gap-4 mt-4">
-                <a href="#" className="btn-custom">Explore More →</a>
+                <button
+                  className="btn-custom"
+                  onClick={() => scrollTo('about')}
+                >
+                  Explore More →
+                </button>
                 <span style={{ color: '#d9d9d9' }}>Call: +91 234344 3534</span>
               </div>
             </div>
@@ -38,26 +45,26 @@ export default function Footer() {
             <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
               <h4>Quick Links</h4>
               <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><button onClick={() => scrollTo('home')}>Home</button></li>
+                <li><button onClick={() => scrollTo('contact')}>Contact</button></li>
+                <li><button onClick={() => scrollTo('services')}>Services</button></li>
+                <li><button onClick={() => scrollTo('blog')}>Blog</button></li>
               </ul>
             </div>
 
             <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
               <h4>Explore Now</h4>
               <ul>
-                <li><a href="#team">Volunteers</a></li>
-                <li><a href="#events">Event</a></li>
+                <li><button onClick={() => scrollTo('team')}>Volunteers</button></li>
+                <li><button onClick={() => scrollTo('events')}>Event</button></li>
               </ul>
             </div>
 
             <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
               <h4>Supports</h4>
               <ul>
-                <li><a href="#donation">Donation</a></li>
-                <li><a href="#faq">Faq</a></li>
+                <li><button onClick={() => scrollTo('donation')}>Donation</button></li>
+                <li><button onClick={() => scrollTo('faq')}>Faq</button></li>
               </ul>
             </div>
 
@@ -99,9 +106,9 @@ export default function Footer() {
             </div>
             <div className="w-full md:w-1/2 text-center md:text-right mt-2 md:mt-0">
               <ul className="footer-bottom-links">
-                <li><a href="#">Faq</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><button onClick={() => scrollTo('faq')}>Faq</button></li>
+                <li><button onClick={() => scrollTo('contact')}>Careers</button></li>
+                <li><button onClick={() => scrollTo('contact')}>Contact</button></li>
               </ul>
             </div>
           </div>

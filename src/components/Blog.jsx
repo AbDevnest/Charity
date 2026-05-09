@@ -28,9 +28,9 @@ export default function Blog() {
                 <h5 className="border-b mb-3 pb-3">
                   How Education Can Transform A Child's Future.
                 </h5>
-                <a href="#" className="read-more">
+                <button className="read-more">
                   Read More <span>↗</span>
-                </a>
+                </button>
               </div>
             </div>
           ))}

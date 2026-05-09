@@ -80,36 +80,33 @@ export default function Navbar() {
         <div className="container mx-auto px-4 flex items-center justify-between">
 
           {/* Logo */}
-          <a
-            href="#home"
+          <button
             onClick={e => handleNavClick(e, '#home')}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 bg-transparent border-none cursor-pointer p-0"
           >
             <img src="/assets/images/main-logo.png" alt="logo" className="h-[42px]" />
-          </a>
+          </button>
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center">
             <ul className="flex items-center list-none m-0 p-0">
               {navLinks.map(link => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
+                  <button
                     className={`nav-link-item ${activeLink === link.href ? 'active' : ''}`}
                     onClick={e => handleNavClick(e, link.href)}
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
               <li className="ml-6">
-                <a
-                  href="#contact"
+                <button
                   className="btn-custom"
                   onClick={e => handleNavClick(e, '#contact')}
                 >
                   Join With Us
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -147,23 +144,21 @@ export default function Navbar() {
             <ul className="list-none m-0 py-3">
               {navLinks.map(link => (
                 <li key={link.href} className="my-3">
-                  <a
-                    href={link.href}
+                  <button
                     className={`nav-link-item block ${activeLink === link.href ? 'active' : ''}`}
                     onClick={e => handleNavClick(e, link.href)}
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
               <li className="mt-4">
-                <a
-                  href="#contact"
+                <button
                   className="btn-custom"
                   onClick={e => handleNavClick(e, '#contact')}
                 >
                   Join With Us
-                </a>
+                </button>
               </li>
             </ul>
           </div>

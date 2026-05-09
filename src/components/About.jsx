@@ -36,7 +36,12 @@ export default function About() {
             </div>
 
             <div className="mt-8">
-              <a href="#" className="btn-custom">Explore More</a>
+              <button
+                className="btn-custom"
+                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Explore More
+              </button>
             </div>
           </div>
 

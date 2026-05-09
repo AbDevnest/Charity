@@ -79,7 +79,7 @@ export default function Services() {
                   </div>
                   <h5 className="font-semibold text-lg text-[#1b2a2f]">{s.title}</h5>
                   <p className="section-text">{s.text}</p>
-                  <a href="#" className="btn-custom">Learn More</a>
+                  <button className="btn-custom" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Learn More</button>
                 </div>
               </div>
             ))}

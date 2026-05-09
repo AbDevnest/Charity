@@ -64,7 +64,12 @@ export default function Events() {
             </p>
             <h2 className="section-title" style={{ color: '#fff' }}>Our Latest Events</h2>
           </div>
-          <a href="#" className="btn-custom mt-3 md:mt-0">Explore More</a>
+          <button
+            className="btn-custom mt-3 md:mt-0"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Explore More
+          </button>
         </div>
 
         {/* Event cards */}
@@ -81,7 +86,7 @@ export default function Events() {
                 <p className="event-meta my-4">
                   <i className="fa-solid fa-location-dot"></i> {ev.location}
                 </p>
-                <a href="#" className="event-btn">Event Details</a>
+                <button className="event-btn">Event Details</button>
               </div>
             </div>
           ))}

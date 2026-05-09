@@ -16,7 +16,12 @@ export default function Team() {
             <p className="section-subtitle">Our Team</p>
             <h2 className="section-title">Meet Our Volunteers</h2>
           </div>
-          <a href="#" className="btn-custom">Join With Us</a>
+          <button
+            className="btn-custom"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Join With Us
+          </button>
         </div>
 
         {/* Cards */}

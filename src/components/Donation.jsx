@@ -56,7 +56,12 @@ function DonationCard({ card }) {
             <span>Goal: {card.goal}</span>
             <span>Raised: {card.raised}</span>
           </div>
-          <a href="#contact" className="btn-donate">Donate Now</a>
+          <button
+            className="btn-donate"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Donate Now
+          </button>
         </div>
       </div>
     </div>
@@ -77,7 +82,7 @@ export default function Donation() {
             <p className="section-subtitle">Start Donating</p>
             <h2 className="section-title">Make a Difference Today</h2>
           </div>
-          <a href="#" className="btn-custom">View All</a>
+          <button className="btn-custom" onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}>View All</button>
         </div>
 
         {/* Cards grid */}
