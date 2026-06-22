@@ -35,7 +35,7 @@ export default function Hero() {
           {/* Right */}
           <div className="w-full lg:w-1/2 px-4 text-center mt-10 lg:mt-0">
             <div className="hero-img-wrapper inline-block">
-              <img src="/assets/images/hero.jpg" alt="hero" />
+              <img src="/assets/images/hero.webp" alt="hero" />
             </div>
           </div>
 

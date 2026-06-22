@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const donationCards = [
   {
-    img: '/assets/images/d1.jpg',
+    img: '/assets/images/d1.webp',
     title: 'Support Child Education',
     text: 'Help underprivileged children access quality education and build a brighter future through learning support.',
     progress: 70,
@@ -10,7 +10,7 @@ const donationCards = [
     raised: '₹1,40,000',
   },
   {
-    img: '/assets/images/d2.jpg',
+    img: '/assets/images/d2.webp',
     title: 'Provide Healthy Meals',
     text: 'Support food distribution programs to ensure families receive nutritious meals and live healthier lives.',
     progress: 60,
@@ -18,7 +18,7 @@ const donationCards = [
     raised: '₹90,000',
   },
   {
-    img: '/assets/images/d3.jpg',
+    img: '/assets/images/d3.webp',
     title: 'Medical Support',
     text: 'Help provide essential medical care and emergency support to those who cannot afford treatment.',
     progress: 80,

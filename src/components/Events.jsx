@@ -21,14 +21,14 @@ const events = [
     location: 'Delhi, India',
   },
   {
-    img: '/assets/images/event3.jpg',
+    img: '/assets/images/event3.webp',
     date: '22\nAug',
     title: 'Health & Wellness Camp',
     text: 'Free medical checkups and essential healthcare services for underserved communities and families.',
     location: 'Mumbai, India',
   },
   {
-    img: '/assets/images/event4.jpg',
+    img: '/assets/images/event4.webp',
     date: '05\nSep',
     title: 'Food Distribution Program',
     text: 'Helping provide nutritious meals to families and children struggling with hunger and poverty.',
