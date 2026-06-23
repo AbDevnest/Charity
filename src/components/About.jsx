@@ -81,7 +81,7 @@ export default function About() {
             <div className="about-img-wrapper">
               <img
                 className="img-main"
-                src="/assets/images/about1.jpg"
+                src="/assets/images/about.webp"
                 alt="CharityCare volunteers helping community members"
                 loading="lazy"
                 width={450}
