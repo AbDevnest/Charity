@@ -1,25 +1,26 @@
+// FAQ.jsx
 import { useState } from 'react'
 
 const faqs = [
   {
-    q: 'What Is Charity, And Why Is It Important ?',
-    a: 'Charity helps reduce suffering and builds a better society by supporting those in need.',
+    q: 'What Is Charity, And Why Is It Important?',
+    a: 'Charity helps reduce suffering and builds a better society by supporting those in need with food, education, and healthcare.',
   },
   {
-    q: 'How Can I Get Involved In Charity Work ?',
-    a: 'You can volunteer, donate, or participate in events organized by our foundation.',
+    q: 'How Can I Get Involved In Charity Work?',
+    a: 'You can volunteer, donate, or participate in events organized by CharityCare foundation across India.',
   },
   {
-    q: 'Dedication for charitable Donations ?',
-    a: 'We ensure every donation is used responsibly and transparently.',
+    q: 'How Are Charitable Donations Used?',
+    a: 'We ensure every donation is used responsibly and transparently for our education, food, and medical programs.',
   },
   {
-    q: 'My Donations Are Going To a Charity ?',
-    a: 'Yes, we work with verified programs to ensure impact.',
+    q: 'How Do I Know My Donation Reached The Right People?',
+    a: 'Yes, we work with verified programs and share regular updates and impact reports with all our donors.',
   },
   {
-    q: 'Is my donation actually being put to use?',
-    a: 'Absolutely, we provide reports and updates for transparency.',
+    q: 'Is My Donation Actually Being Put To Use?',
+    a: 'Absolutely, we provide detailed reports and updates for full transparency on how your donation creates impact.',
   },
 ]
 
@@ -27,36 +28,56 @@ export default function FAQ() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="py-[90px] bg-white">
+    <section id="faq" className="py-[90px] bg-white" aria-labelledby="faq-heading">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap -mx-4 items-center">
 
-          {/* Accordion */}
           <div className="w-full lg:w-1/2 px-4">
-            {faqs.map((item, i) => (
-              <div key={i} className="faq-item">
-                <button
-                  className={`faq-question ${open === i ? 'open' : ''}`}
-                  onClick={() => setOpen(open === i ? -1 : i)}
-                >
-                  {item.q}
-                  <span className="ml-2 text-[#2faf90]">{open === i ? '−' : '+'}</span>
-                </button>
-                {open === i && (
-                  <div className="faq-answer">{item.a}</div>
-                )}
-              </div>
-            ))}
+            <dl>
+              {faqs.map((item, i) => (
+                <div key={i} className="faq-item">
+                  <dt>
+                    <button
+                      className={`faq-question ${open === i ? 'open' : ''}`}
+                      onClick={() => setOpen(open === i ? -1 : i)}
+                      aria-expanded={open === i}
+                      aria-controls={`faq-answer-${i}`}
+                      id={`faq-question-${i}`}
+                    >
+                      {item.q}
+                      <span className="ml-2 text-[#2faf90]" aria-hidden="true">{open === i ? '−' : '+'}</span>
+                    </button>
+                  </dt>
+                  {open === i && (
+                    <dd
+                      id={`faq-answer-${i}`}
+                      className="faq-answer"
+                      role="region"
+                      aria-labelledby={`faq-question-${i}`}
+                    >
+                      {item.a}
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
           </div>
 
-          {/* Content */}
           <div className="w-full lg:w-1/2 px-4 mt-10 lg:mt-0">
             <div className="pl-0 lg:pl-8">
-              <span className="section-subtitle">Our FAQ</span>
-              <h2 className="section-title">Explore our faqs for quick and helpful guidance</h2>
-              <p className="section-text">Charity helps reduce suffering and builds unity in society.</p>
+              <p className="section-subtitle">Our FAQ</p>
+              <h2 id="faq-heading" className="section-title">Explore Our FAQs for Quick and Helpful Guidance</h2>
+              <p className="section-text">
+                Have questions about CharityCare? Find answers about donations, volunteering, and our programs below.
+              </p>
               <div className="faq-image mt-5">
-                <img src="/assets/images/faq.jpg" alt="faq" />
+                <img
+                  src="/assets/images/faq.jpg"
+                  alt="CharityCare team answering frequently asked questions about charity"
+                  loading="lazy"
+                  width={500}
+                  height={350}
+                />
               </div>
             </div>
           </div>

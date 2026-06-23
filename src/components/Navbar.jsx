@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-// These must match the `id` attributes on every section component
 const navLinks = [
   { label: 'Home',     href: '#home' },
   { label: 'About',    href: '#about' },
@@ -10,7 +9,6 @@ const navLinks = [
   { label: 'Contact',  href: '#contact' },
 ]
 
-// IDs in page order — used by the Intersection Observer
 const SECTION_IDS = ['home', 'about', 'services', 'donation', 'events', 'contact']
 
 export default function Navbar() {
@@ -27,7 +25,6 @@ export default function Navbar() {
   const visibleSections = useRef(new Set())
 
   const pickActive = useCallback(() => {
-    // Walk sections top-to-bottom; first visible one wins
     for (const id of SECTION_IDS) {
       if (visibleSections.current.has(id)) {
         setActiveLink(`#${id}`)
@@ -49,8 +46,6 @@ export default function Navbar() {
         pickActive()
       },
       {
-        // Fire when 20% of a section enters the viewport.
-        // rootMargin top offset accounts for the sticky navbar height (~70px).
         rootMargin: '-70px 0px -40% 0px',
         threshold: 0,
       }
@@ -75,26 +70,33 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50">
-      <nav className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className="sticky top-0 z-50" role="banner">
+      <nav
+        className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}
+        aria-label="Main Navigation"
+      >
         <div className="container mx-auto px-4 flex items-center justify-between">
 
-          {/* Logo */}
           <button
             onClick={e => handleNavClick(e, '#home')}
             className="flex items-center gap-2 bg-transparent border-none cursor-pointer p-0"
+            aria-label="CharityCare - Go to homepage"
           >
-            <img src="/assets/images/main-logo.png" alt="logo" className="h-[42px]" />
+            <img
+              src="/assets/images/main-logo.png"
+              alt="CharityCare - Charity Organization Logo"
+              className="h-[42px]"
+            />
           </button>
 
-          {/* Desktop links */}
           <div className="hidden lg:flex items-center">
-            <ul className="flex items-center list-none m-0 p-0">
+            <ul className="flex items-center list-none m-0 p-0" role="list">
               {navLinks.map(link => (
                 <li key={link.href}>
                   <button
                     className={`nav-link-item ${activeLink === link.href ? 'active' : ''}`}
                     onClick={e => handleNavClick(e, link.href)}
+                    aria-current={activeLink === link.href ? 'page' : undefined}
                   >
                     {link.label}
                   </button>
@@ -104,6 +106,7 @@ export default function Navbar() {
                 <button
                   className="btn-custom"
                   onClick={e => handleNavClick(e, '#contact')}
+                  aria-label="Join With Us - Contact CharityCare"
                 >
                   Join With Us
                 </button>
@@ -111,14 +114,13 @@ export default function Navbar() {
             </ul>
           </div>
 
-          {/* Mobile toggler */}
           <button
             className="lg:hidden flex flex-col gap-[5px] p-2"
             onClick={() => setMenuOpen(prev => !prev)}
-            aria-label="Toggle navigation"
+            aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            {/* Animated hamburger → X */}
             <span
               className="block w-6 h-[2px] bg-white transition-all duration-300 origin-center"
               style={menuOpen ? { transform: 'translateY(7px) rotate(45deg)' } : {}}
@@ -134,19 +136,21 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         <div
+          id="mobile-menu"
           className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             menuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
           }`}
+          aria-hidden={!menuOpen}
         >
-          <div className="bg-[#1b2a2f] p-4 ">
-            <ul className="list-none m-0 py-3">
+          <div className="bg-[#1b2a2f] p-4">
+            <ul className="list-none m-0 py-3" role="list">
               {navLinks.map(link => (
                 <li key={link.href} className="my-3">
                   <button
                     className={`nav-link-item block ${activeLink === link.href ? 'active' : ''}`}
                     onClick={e => handleNavClick(e, link.href)}
+                    aria-current={activeLink === link.href ? 'page' : undefined}
                   >
                     {link.label}
                   </button>
@@ -156,6 +160,7 @@ export default function Navbar() {
                 <button
                   className="btn-custom"
                   onClick={e => handleNavClick(e, '#contact')}
+                  aria-label="Join With Us - Contact CharityCare"
                 >
                   Join With Us
                 </button>

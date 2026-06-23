@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://charity-one-kappa.vercel.app/sitemap.xml

@@ -4,17 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Smooth scrolling ── */
 html {
   scroll-behavior: smooth;
 }
 
-/* ── Offset anchor targets so sticky navbar doesn't cover them ── */
 section[id] {
   scroll-margin-top: 70px;
 }
 
-/* ── Root variables (kept for reference) ── */
 :root {
   --primary: #2faf90;
   --dark: #1b2a2f;
@@ -29,11 +26,28 @@ section[id] {
   --primary-dark: #239e7e;
 }
 
-/* ── Base ── */
 body {
   font-family: "Lora", serif;
   color: #2c3e40;
   margin: 0;
+}
+
+/* ── Accessibility ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid #2faf90;
+  outline-offset: 3px;
 }
 
 /* ── Utility ── */
@@ -69,9 +83,7 @@ body {
   border: none;
   font-size: 14px;
   cursor: pointer;
-  transition:
-    background 0.3s,
-    color 0.3s;
+  transition: background 0.3s, color 0.3s;
   text-decoration: none;
   display: inline-block;
   font-family: "Lora", serif;
@@ -114,14 +126,18 @@ body {
 .nav-link-item.active {
   color: #2faf90;
 }
-.nav-link-item.active::after {
+.nav-link-item::after {
   content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 2px;
   background: #2faf90;
+  transition: width 0.3s ease;
+}
+.nav-link-item.active::after {
+  width: 100%;
 }
 
 /* ── Hero ── */
@@ -208,7 +224,6 @@ body {
   font-size: 14px;
   margin: 0;
 }
-
 .icon-box {
   width: 50px;
   height: 50px;
@@ -262,7 +277,7 @@ body {
   background: #2faf90;
   transform: translateY(-10px);
 }
-.service-card:hover h5,
+.service-card:hover h3,
 .service-card:hover .section-text {
   color: #fff;
 }
@@ -464,10 +479,11 @@ body {
   margin-bottom: 10px;
   color: #2faf90;
 }
-.stat-circle h4 {
+.stat-circle h3 {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 5px;
+  color: #fff;
 }
 .stat-circle p {
   font-size: 14px;
@@ -514,9 +530,10 @@ body {
   border-radius: 8px;
   line-height: 1.4;
 }
-.event-content h5 {
+.event-content h3 {
   color: #fff;
   font-weight: 600;
+  margin-bottom: 8px;
 }
 .event-content p {
   color: #cbd5e1;
@@ -574,7 +591,7 @@ body {
 .team-content {
   padding: 18px;
 }
-.team-content h5 {
+.team-content h3 {
   font-weight: 600;
   margin-bottom: 4px;
   color: #1b2a2f;
@@ -596,28 +613,20 @@ body {
 .testi-header .section-text {
   margin: 0 auto;
 }
-
-/* Slider wrapper — positions prev/next buttons */
 .testi-slider-wrap {
   position: relative;
   max-width: 780px;
   margin: 0 auto;
 }
-
-/* Viewport clips the track */
 .testi-viewport {
   overflow: hidden;
   border-radius: 20px;
 }
-
-/* Track slides horizontally via % — no JS width calc needed */
 .testi-track {
   display: flex;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
-
-/* Each card takes exactly 100% of the viewport */
 .testi-card {
   min-width: 100%;
   box-sizing: border-box;
@@ -630,7 +639,6 @@ body {
   gap: 14px;
   position: relative;
 }
-
 .testi-quote {
   font-size: 80px;
   line-height: 1;
@@ -643,27 +651,23 @@ body {
   pointer-events: none;
   user-select: none;
 }
-
 .testi-stars {
   color: #f5a623;
   font-size: 20px;
   letter-spacing: 2px;
 }
-
 .testi-text {
   font-size: 16px;
   color: #2c3e40;
   line-height: 1.8;
   margin: 0;
 }
-
 .testi-user {
   display: flex;
   align-items: center;
   gap: 14px;
   margin-top: 8px;
 }
-
 .testi-avatar {
   width: 58px;
   height: 58px;
@@ -672,20 +676,16 @@ body {
   border: 3px solid #2faf90;
   flex-shrink: 0;
 }
-
 .testi-name {
   font-size: 16px;
   font-weight: 700;
   color: #1b2a2f;
   margin: 0 0 2px;
 }
-
 .testi-role {
   font-size: 13px;
   color: #7a8a8d;
 }
-
-/* Prev / Next buttons */
 .testi-btn {
   position: absolute;
   top: 50%;
@@ -703,9 +703,7 @@ body {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 14px rgba(47, 175, 144, 0.35);
-  transition:
-    background 0.3s,
-    transform 0.2s;
+  transition: background 0.3s, transform 0.2s;
   z-index: 10;
 }
 .testi-btn:hover {
@@ -718,8 +716,6 @@ body {
 .testi-btn-next {
   right: -22px;
 }
-
-/* Dots */
 .testi-dots {
   display: flex;
   justify-content: center;
@@ -733,9 +729,7 @@ body {
   border: none;
   background: #c5d9d5;
   cursor: pointer;
-  transition:
-    background 0.3s,
-    transform 0.3s;
+  transition: background 0.3s, transform 0.3s;
   padding: 0;
 }
 .testi-dot.active {
@@ -829,7 +823,7 @@ body {
   gap: 15px;
   margin-bottom: 10px;
 }
-.blog-content h5 {
+.blog-content h3 {
   font-size: 18px;
   color: #2c3e40;
   line-height: 1.5;
@@ -900,9 +894,10 @@ body {
   background: #0f2a2a;
   border-radius: 0 0 80px 80px;
 }
-.footer-links h4 {
+.footer-links h3 {
   margin-bottom: 20px;
   color: #fff;
+  font-size: 18px;
 }
 .footer-links ul {
   list-style: none;
@@ -951,7 +946,7 @@ body {
   cursor: pointer;
   font-family: "Lora", serif;
 }
-.socials i {
+.socials a {
   display: inline-block;
   width: 35px;
   height: 35px;
@@ -963,8 +958,9 @@ body {
   cursor: pointer;
   color: #fff;
   transition: background 0.3s;
+  text-decoration: none;
 }
-.socials i:hover {
+.socials a:hover {
   background: #2faf90;
 }
 .footer-bottom {
@@ -1006,7 +1002,7 @@ body {
   color: #2faf90;
 }
 
-/* ── Swiper overrides ── */
+/* ── Swiper ── */
 .service-slider {
   padding-bottom: 40px;
 }
@@ -1016,141 +1012,40 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 992px) {
-  .section-title {
-    font-size: 32px;
-  }
-  .hero-heading {
-    font-size: 36px;
-  }
-  .hero-section {
-    padding: 120px 0 80px;
-  }
-  .custom-navbar {
-    background: #1b2a2f;
-    padding: 10px 0;
-  }
-  .about-img-wrapper {
-    margin-bottom: 50px;
-  }
-  .experience-box {
-    right: 0;
-  }
-  .donation-img {
-    height: 160px;
-  }
-  .donate-title {
-    margin-top: 20px;
-    font-size: 22px;
-  }
+  .section-title { font-size: 32px; }
+  .hero-heading { font-size: 36px; }
+  .hero-section { padding: 120px 0 80px; }
+  .custom-navbar { background: #1b2a2f; padding: 10px 0; }
+  .about-img-wrapper { margin-bottom: 50px; }
+  .experience-box { right: 0; }
+  .donation-img { height: 160px; }
+  .donate-title { margin-top: 20px; font-size: 22px; }
 }
 @media (max-width: 768px) {
-  .event-card {
-    flex-direction: column;
-  }
-  .event-img img {
-    width: 100%;
-    height: 180px;
-  }
-  .stat-circle {
-    width: 180px;
-    height: 180px;
-  }
-  .testimonial-wrapper {
-    flex-direction: column;
-  }
-  .testimonial-image {
-    max-width: 100%;
-    min-height: auto;
-  }
-  .testimonial-image img {
-    border-radius: 0 0 150px 150px;
-    height: 350px;
-  }
-  .testimonial-content {
-    padding: 25px 15px;
-    text-align: center;
-    padding-left: 15px;
-  }
-  .testimonial-user {
-    justify-content: center;
-  }
-  .testimonial-controls {
-    position: static;
-    margin-top: 20px;
-  }
-  .testi-card {
-    padding: 32px 24px;
-  }
-  .testi-btn-prev {
-    left: -14px;
-  }
-  .testi-btn-next {
-    right: -14px;
-  }
-  .footer-bottom {
-    text-align: center;
-  }
-  .footer-bottom-links {
-    justify-content: center;
-    margin-top: 10px;
-  }
-  .footer-cta-content {
-    padding: 25px;
-    text-align: center;
-  }
+  .event-card { flex-direction: column; }
+  .event-img img { width: 100%; height: 180px; }
+  .stat-circle { width: 180px; height: 180px; }
+  .testi-card { padding: 32px 24px; }
+  .testi-btn-prev { left: -14px; }
+  .testi-btn-next { right: -14px; }
+  .footer-bottom { text-align: center; }
+  .footer-bottom-links { justify-content: center; margin-top: 10px; }
+  .footer-cta-content { padding: 25px; text-align: center; }
 }
 @media (max-width: 576px) {
-  .section-title {
-    font-size: 26px;
-    line-height: 1.3;
-  }
-  .section-subtitle {
-    font-size: 13px;
-  }
-  .section-text {
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .btn-custom {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-  .hero-section {
-    text-align: center;
-    padding: 100px 0 60px;
-  }
-  .hero-heading {
-    font-size: 28px;
-  }
-  .hero-img-wrapper img {
-    margin-top: 30px;
-  }
-  .img-small {
-    position: static;
-    margin-top: 20px;
-  }
-  .experience-box {
-    position: static;
-    margin-top: 15px;
-  }
-  .donation-title {
-    font-size: 18px;
-  }
-  .testi-card {
-    padding: 28px 18px;
-  }
-  .testi-text {
-    font-size: 15px;
-  }
-  .testi-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
-  }
-  .testi-btn-prev {
-    left: -10px;
-  }
-  .testi-btn-next {
-    right: -10px;
-  }
+  .section-title { font-size: 26px; line-height: 1.3; }
+  .section-subtitle { font-size: 13px; }
+  .section-text { font-size: 15px; line-height: 1.6; }
+  .btn-custom { padding: 8px 16px; font-size: 13px; }
+  .hero-section { text-align: center; padding: 100px 0 60px; }
+  .hero-heading { font-size: 28px; }
+  .hero-img-wrapper img { margin-top: 30px; }
+  .img-small { position: static; margin-top: 20px; }
+  .experience-box { position: static; margin-top: 15px; }
+  .donation-title { font-size: 18px; }
+  .testi-card { padding: 28px 18px; }
+  .testi-text { font-size: 15px; }
+  .testi-btn { width: 36px; height: 36px; font-size: 22px; }
+  .testi-btn-prev { left: -10px; }
+  .testi-btn-next { right: -10px; }
 }

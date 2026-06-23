@@ -1,13 +1,13 @@
+// Hero.jsx
 export default function Hero() {
   return (
-    <section id="home" className="hero-section">
+    <section id="home" className="hero-section" aria-labelledby="hero-heading">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center -mx-4">
 
-          {/* Left */}
           <div className="w-full lg:w-1/2 px-4">
             <p className="section-subtitle">❤️ Change Lives With Us</p>
-            <h1 className="hero-heading">
+            <h1 id="hero-heading" className="hero-heading">
               Small Help Can Make <br />
               A Big Difference
             </h1>
@@ -16,26 +16,33 @@ export default function Hero() {
               education, food, and healthcare. Together, we can create a
               brighter and better future.
             </p>
-            <div className="flex flex-wrap md:justify-start  justify-center items-center text-center gap-3 mt-8">
+            <div className="flex flex-wrap md:justify-start justify-center items-center text-center gap-3 mt-8">
               <button
                 className="btn-custom"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                aria-label="Donate now to CharityCare"
               >
                 Donate Now
               </button>
               <button
                 className="inline-block px-6 py-[10px] bg-white text-[#1b2a2f] rounded-[30px] text-sm font-medium transition hover:bg-gray-100"
                 onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                aria-label="Explore more about CharityCare"
               >
                 Explore More
               </button>
             </div>
           </div>
 
-          {/* Right */}
           <div className="w-full lg:w-1/2 px-4 text-center mt-10 lg:mt-0">
             <div className="hero-img-wrapper inline-block">
-              <img src="/assets/images/hero.webp" alt="hero" />
+              <img
+                src="/assets/images/hero.webp"
+                alt="CharityCare volunteers helping children and families in need"
+                width={420}
+                height={480}
+                fetchpriority="high"
+              />
             </div>
           </div>
 

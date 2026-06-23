@@ -1,3 +1,4 @@
+// Events.jsx
 const stats = [
   { icon: 'fa-users',           value: '260+', label: 'Total Happy Children' },
   { icon: 'fa-handshake-angle', value: '110+', label: 'Our Volunteers' },
@@ -38,17 +39,16 @@ const events = [
 
 export default function Events() {
   return (
-    <section id="events" className="event-section">
+    <section id="events" className="event-section" aria-labelledby="events-heading">
       <div className="container mx-auto px-4">
 
-        {/* Stats */}
-        <div className="mb-12">
+        <div className="mb-12" aria-label="CharityCare impact statistics">
           <div className="flex flex-wrap justify-center -mx-4 gap-y-6">
             {stats.map((s, i) => (
               <div key={i} className="w-full sm:w-1/2 lg:w-1/4 px-4 flex justify-center">
-                <div className="stat-circle">
-                  <i className={`fa-solid ${s.icon}`}></i>
-                  <h4>{s.value}</h4>
+                <div className="stat-circle" aria-label={`${s.value} ${s.label}`}>
+                  <i className={`fa-solid ${s.icon}`} aria-hidden="true"></i>
+                  <h3 style={{ fontSize: '28px', fontWeight: 700, marginBottom: 5, color: '#fff' }}>{s.value}</h3>
                   <p>{s.label}</p>
                 </div>
               </div>
@@ -56,39 +56,51 @@ export default function Events() {
           </div>
         </div>
 
-        {/* Header */}
         <div className="flex flex-wrap justify-between items-center mb-12 gap-4">
           <div>
             <p className="section-subtitle" style={{ background: '#fff', color: '#2faf90', display: 'inline-block', padding: '4px 12px', borderRadius: '20px' }}>
               Upcoming Events
             </p>
-            <h2 className="section-title" style={{ color: '#fff' }}>Our Latest Events</h2>
+            <h2 id="events-heading" className="section-title" style={{ color: '#fff' }}>Our Latest Events</h2>
           </div>
           <button
             className="btn-custom mt-3 md:mt-0"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label="Explore more CharityCare events"
           >
             Explore More
           </button>
         </div>
 
-        {/* Event cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {events.map((ev, i) => (
-            <div key={i} className="event-card">
+            <article key={i} className="event-card">
               <div className="event-img">
-                <img src={ev.img} alt={ev.title} />
-                <span className="event-date" style={{ whiteSpace: 'pre-line' }}>{ev.date}</span>
+                <img
+                  src={ev.img}
+                  alt={`${ev.title} - CharityCare Event in ${ev.location}`}
+                  loading="lazy"
+                  width={150}
+                  height={130}
+                />
+                <span className="event-date" style={{ whiteSpace: 'pre-line' }} aria-hidden="true">{ev.date}</span>
               </div>
               <div className="event-content">
-                <h5>{ev.title}</h5>
+                <h3 style={{ color: '#fff', fontWeight: 600, marginBottom: 8 }}>{ev.title}</h3>
                 <p>{ev.text}</p>
                 <p className="event-meta my-4">
-                  <i className="fa-solid fa-location-dot"></i> {ev.location}
+                  <i className="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  {' '}
+                  <span>{ev.location}</span>
                 </p>
-                <button className="event-btn">Event Details</button>
+                <button
+                  className="event-btn"
+                  aria-label={`View details for ${ev.title} in ${ev.location}`}
+                >
+                  Event Details
+                </button>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 

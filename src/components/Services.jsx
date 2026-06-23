@@ -1,3 +1,4 @@
+// Services.jsx
 import { useEffect, useRef } from 'react'
 import Swiper from 'swiper'
 import { Autoplay } from 'swiper/modules'
@@ -60,27 +61,37 @@ export default function Services() {
   }, [])
 
   return (
-    <section id="services" className="py-[90px]" style={{ background: 'rgba(240,245,232,0.69)' }}>
+    <section id="services" className="py-[90px]" style={{ background: 'rgba(240,245,232,0.69)' }} aria-labelledby="services-heading">
       <div className="container mx-auto px-4 text-center">
         <div className="flex flex-col items-center">
           <p className="section-subtitle">Our Services 🤌</p>
-          <h2 className="section-title" style={{ maxWidth: 700 }}>
-            Providing Humanist services to all people is what we do
+          <h2 id="services-heading" className="section-title" style={{ maxWidth: 700 }}>
+            Providing Humanist Services to All People Is What We Do
           </h2>
         </div>
 
-        <div className="swiper service-slider mt-10" ref={swiperRef}>
+        <div
+          className="swiper service-slider mt-10"
+          ref={swiperRef}
+          aria-label="CharityCare services slider"
+        >
           <div className="swiper-wrapper">
             {services.map((s, i) => (
               <div className="swiper-slide" key={i}>
-                <div className="service-card">
-                  <div className="icon-circle">
+                <article className="service-card">
+                  <div className="icon-circle" aria-hidden="true">
                     <i className={`fa-solid ${s.icon}`}></i>
                   </div>
-                  <h5 className="font-semibold text-lg text-[#1b2a2f]">{s.title}</h5>
+                  <h3 className="font-semibold text-lg text-[#1b2a2f]">{s.title}</h3>
                   <p className="section-text">{s.text}</p>
-                  <button className="btn-custom" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Learn More</button>
-                </div>
+                  <button
+                    className="btn-custom"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    aria-label={`Learn more about our ${s.title} service`}
+                  >
+                    Learn More
+                  </button>
+                </article>
               </div>
             ))}
           </div>
