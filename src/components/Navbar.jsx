@@ -91,6 +91,7 @@ export default function Navbar() {
             <img
               src="/assets/images/main-logo.webp"
               alt="CharityCare - Charity Organization Logo"
+               className="h-[42px]"
               width={200}
               height={42}
             />
