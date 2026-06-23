@@ -27,7 +27,7 @@ export default function Team() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" role="list">
           {members.map((m, i) => (
-            <article key={i} className={`team-card ${m.offsetTop ? 'mt-10' : ''}`} role="listitem">
+            <article key={i} className={`team-card ${m.offsetTop ? 'mt-10' : ''}`} >
               <div className="team-img">
                 <img
                   src={m.img}

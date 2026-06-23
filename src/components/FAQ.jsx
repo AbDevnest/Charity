@@ -35,8 +35,8 @@ export default function FAQ() {
           <div className="w-full lg:w-1/2 px-4">
             <dl>
               {faqs.map((item, i) => (
-                <div key={i} className="faq-item">
-                  <dt>
+                <>
+                  <dt key={`dt-${i}`} className="faq-item">
                     <button
                       className={`faq-question ${open === i ? 'open' : ''}`}
                       onClick={() => setOpen(open === i ? -1 : i)}
@@ -45,20 +45,22 @@ export default function FAQ() {
                       id={`faq-question-${i}`}
                     >
                       {item.q}
-                      <span className="ml-2 text-[#2faf90]" aria-hidden="true">{open === i ? '−' : '+'}</span>
+                      <span className="ml-2 text-[#2faf90]" aria-hidden="true">
+                        {open === i ? '−' : '+'}
+                      </span>
                     </button>
                   </dt>
                   {open === i && (
                     <dd
+                      key={`dd-${i}`}
                       id={`faq-answer-${i}`}
                       className="faq-answer"
-                      role="region"
                       aria-labelledby={`faq-question-${i}`}
                     >
                       {item.a}
                     </dd>
                   )}
-                </div>
+                </>
               ))}
             </dl>
           </div>
