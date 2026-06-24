@@ -6,13 +6,19 @@
     <title>CharityCare - Helping Those in Need</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="CharityCare helps underprivileged communities through child education, healthy meals, and medical support. Join us and make a difference today." />
+    <meta
+      name="description"
+      content="CharityCare helps underprivileged communities through child education, healthy meals, and medical support. Join us and make a difference today."
+    />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="CharityCare" />
 
     <!-- Open Graph (Social Media Share) -->
     <meta property="og:title" content="CharityCare - Helping Those in Need" />
-    <meta property="og:description" content="Support child education, healthy meals, and medical aid with CharityCare." />
+    <meta
+      property="og:description"
+      content="Support child education, healthy meals, and medical aid with CharityCare."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://charity-one-kappa.vercel.app/" />
     <meta property="og:image" content="/assets/images/hero.webp" />
@@ -20,17 +26,58 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="CharityCare - Helping Those in Need" />
-    <meta name="twitter:description" content="Support child education, healthy meals, and medical aid with CharityCare." />
+    <meta
+      name="twitter:description"
+      content="Support child education, healthy meals, and medical aid with CharityCare."
+    />
+
+    <link rel="canonical" href="https://charity-one-kappa.vercel.app/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "CharityCare",
+        "url": "https://charity-one-kappa.vercel.app/",
+        "logo": "https://charity-one-kappa.vercel.app/assets/images/main-logo.png",
+        "description": "CharityCare helps underprivileged communities through child education, healthy meals, and medical support.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Jaipur",
+          "addressRegion": "Rajasthan",
+          "addressCountry": "IN"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-234344-3534",
+          "contactType": "customer support",
+          "email": "support@charitycare.com"
+        },
+        "sameAs": [
+          "https://twitter.com/charitycare",
+          "https://facebook.com/charitycare",
+          "https://instagram.com/charitycare"
+        ]
+      }
+    </script>
   </body>
 </html>
