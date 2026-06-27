@@ -1,4 +1,3 @@
-// Testimonials.jsx
 import { useState, useEffect, useRef } from 'react'
 
 const testimonials = [

@@ -1,4 +1,3 @@
-// Events.jsx
 const stats = [
   { icon: 'fa-users',           value: '260+', label: 'Total Happy Children' },
   { icon: 'fa-handshake-angle', value: '110+', label: 'Our Volunteers' },

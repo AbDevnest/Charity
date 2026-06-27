@@ -1,16 +1,51 @@
-// Contact.jsx
 import { useState } from 'react'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [form, setForm] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '',      
+    subject: '', 
+    message: '' 
+  })
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    alert('Message sent! We will get back to you soon.')
-    setForm({ name: '', email: '', subject: '', message: '' })
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  setError('')
+  setSuccess(false)
+
+  const phoneRegex = /^[0-9]{10}$/
+  if (!phoneRegex.test(form.phone)) {
+    setError('Please enter a valid 10-digit phone number')
+    return
   }
+
+  setLoading(true)
+
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+    const data = await res.json()
+
+    if (data.success) {
+      setSuccess(true)
+      setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+    } else {
+      setError(data.message || 'Something went wrong')
+    }
+  } catch (err) {
+    setError('Failed to send message. Please try again.')
+  }
+  setLoading(false)
+}
 
   return (
     <section id="contact" className="py-[90px]" style={{ background: 'rgba(240,245,232,0.69)' }} aria-labelledby="contact-heading">
@@ -42,6 +77,14 @@ export default function Contact() {
           </div>
 
           <div className="w-full lg:w-7/12 px-4">
+            {/* ✅ Success/Error Messages */}
+            {success && (
+              <p className="text-green-500 text-center mb-4">Message sent successfully! We'll get back to you soon.</p>
+            )}
+            {error && (
+              <p className="text-red-500 text-center mb-4">{error}</p>
+            )}
+
             <form
               className="contact-form bg-white p-8 rounded-2xl shadow-sm"
               onSubmit={handleSubmit}
@@ -75,26 +118,50 @@ export default function Contact() {
                   />
                 </div>
               </div>
+
+              {/* ✅ Phone Input — New */}
+              <label htmlFor="phone" className="sr-only">Phone Number</label>
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                placeholder="Your Phone Number"
+                required
+                value={form.phone}
+                onChange={handleChange}
+                autoComplete="tel"
+              />
+
               <label htmlFor="subject" className="sr-only">Subject</label>
               <input
                 id="subject"
                 type="text"
                 name="subject"
                 placeholder="Subject"
+                required
                 value={form.subject}
                 onChange={handleChange}
               />
+
               <label htmlFor="message" className="sr-only">Your Message</label>
               <textarea
                 id="message"
                 rows={5}
                 name="message"
                 placeholder="Write your message here..."
+                required
                 value={form.message}
                 onChange={handleChange}
               />
-              <button type="submit" className="btn-custom mt-2" aria-label="Send your message to CharityCare">
-                Send Message <i className="fa-solid fa-arrow-right ml-1" aria-hidden="true"></i>
+
+              <button 
+                type="submit" 
+                className="btn-custom mt-2" 
+                aria-label="Send your message to CharityCare"
+                disabled={loading}
+              >
+                {loading ? 'Sending...' : 'Send Message'} 
+                <i className="fa-solid fa-arrow-right ml-1" aria-hidden="true"></i>
               </button>
             </form>
           </div>

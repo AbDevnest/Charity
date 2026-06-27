@@ -1,4 +1,3 @@
-// Team.jsx
 const members = [
   { img: '/assets/images/member-2.jpg', name: 'Rahul Sharma', role: 'Volunteer',    offsetTop: true },
   { img: '/assets/images/member-1.jpg', name: 'Priya Verma',  role: 'Coordinator', offsetTop: false },

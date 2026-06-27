@@ -1,4 +1,3 @@
-// About.jsx
 export default function About() {
   const scrollToServices = () => {
     const el = document.getElementById("services");
@@ -38,7 +37,7 @@ export default function About() {
           <div className="w-full lg:w-1/2 px-4">
             <p className="section-subtitle">
               <i className="fa-solid fa-heart text-rose-600" aria-hidden="true"></i>
-              {" "}About Us
+              About Us
             </p>
 
             <h2 id="about-heading" className="section-title">

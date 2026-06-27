@@ -1,4 +1,3 @@
-// FAQ.jsx
 import { useState } from 'react'
 
 const faqs = [

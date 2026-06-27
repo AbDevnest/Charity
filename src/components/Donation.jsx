@@ -1,4 +1,3 @@
-// Donation.jsx
 import { useState } from 'react'
 
 const donationCards = [

@@ -1,4 +1,3 @@
-// Blog.jsx
 const posts = [
   {
     img: '/assets/images/01.jpg',

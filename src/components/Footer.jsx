@@ -1,18 +1,73 @@
-// Footer.jsx
 import { useState } from "react";
 
 const scrollTo = (id) =>
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+const socialLinks = [
+  {
+    href: "https://twitter.com",
+    icon: "fa-brands fa-twitter",
+    label: "Follow CharityCare on Twitter",
+  },
+  {
+    href: "https://facebook.com",
+    icon: "fa-brands fa-facebook",
+    label: "Follow CharityCare on Facebook",
+  },
+  {
+    href: "https://instagram.com",
+    icon: "fa-brands fa-instagram",
+    label: "Follow CharityCare on Instagram",
+  },
+  {
+    href: "https://youtube.com",
+    icon: "fa-brands fa-youtube",
+    label: "Subscribe to CharityCare on YouTube",
+  },
+];
+
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      setMessage("Please enter your email");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setMessage("Subscribed successfully!");
+        setEmail("");
+      } else {
+        setMessage(data.message || "Subscription failed");
+      }
+    } catch (error) {
+      setMessage("Something went wrong. Try again.");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <footer id="footer" className="footer" aria-label="CharityCare site footer">
       <div className="container mx-auto px-4">
+        {/* CTA Section - Unchanged */}
         <div className="flex lg:flex-nowrap flex-wrap gap-2 items-center">
           <div className="w-full lg:w-1/2">
-            <div className="footer-cta-img h-64 lg:h-80 ">
+            <div className="footer-cta-img">
               <img
                 className="shadow-xl"
                 src="/assets/images/contact.jpg"
@@ -24,7 +79,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="w-full lg:w-1/2">
-            <div className="footer-cta-content h-64 lg:h-80 shadow-xl">
+            <div className="footer-cta-content shadow-xl">
               <p className="section-subtitle">CharityCare</p>
               <h2 className="section-title" style={{ color: "#fff" }}>
                 Always Open to Support People in Need
@@ -52,16 +107,19 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Footer Links - FIXED NEWSLETTER SECTION */}
         <nav className="footer-links mt-12" aria-label="Footer navigation">
-          <div className="flex flex-wrap -mx-4 text-center md:text-left">
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+            {/* Quick Links */}
+            <div>
               <h3 style={{ marginBottom: 20, color: "#fff", fontSize: 18 }}>
                 Quick Links
               </h3>
-              <ul>
+              <ul className="space-y-2">
                 <li>
                   <button
                     onClick={() => scrollTo("home")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Go to Home section"
                   >
                     Home
@@ -70,6 +128,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("contact")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Go to Contact section"
                   >
                     Contact
@@ -78,6 +137,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("services")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Go to Services section"
                   >
                     Services
@@ -86,6 +146,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("blog")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Go to Blog section"
                   >
                     Blog
@@ -94,14 +155,16 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
+            {/* Explore Now */}
+            <div>
               <h3 style={{ marginBottom: 20, color: "#fff", fontSize: 18 }}>
                 Explore Now
               </h3>
-              <ul>
+              <ul className="space-y-2">
                 <li>
                   <button
                     onClick={() => scrollTo("team")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Meet our volunteers"
                   >
                     Volunteers
@@ -110,6 +173,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("events")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="View upcoming events"
                   >
                     Event
@@ -118,14 +182,16 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
+            {/* Supports */}
+            <div>
               <h3 style={{ marginBottom: 20, color: "#fff", fontSize: 18 }}>
                 Supports
               </h3>
-              <ul>
+              <ul className="space-y-2">
                 <li>
                   <button
                     onClick={() => scrollTo("donation")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="Go to Donation section"
                   >
                     Donation
@@ -134,6 +200,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("faq")}
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label="View frequently asked questions"
                   >
                     FAQ
@@ -142,15 +209,18 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 lg:mb-0">
+            {/* Newsletter - FIXED VERSION */}
+            <div className="w-full">
               <h3 style={{ marginBottom: 20, color: "#fff", fontSize: 18 }}>
                 Newsletter
               </h3>
               <p style={{ color: "#d9d9d9", fontSize: 14, marginBottom: 12 }}>
                 Get updates about charity events and activities.
               </p>
+
+              {/* FIXED: Better flex layout with proper wrapping */}
               <div
-                className="newsletter"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2"
                 role="form"
                 aria-label="Newsletter subscription"
               >
@@ -164,78 +234,95 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
+                  className="flex-1 min-w-[120px] px-4 py-2.5 rounded-lg outline-none text-sm"
+                  style={{
+                    backgroundColor: "#1e293b",
+                    color: "#ffffff",
+                    border: "1px solid #334155",
+                  }}
                 />
                 <button
-                  onClick={() => setEmail("")}
+                  onClick={handleSubscribe}
+                  disabled={loading}
+                  className="px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 whitespace-nowrap text-sm"
+                  style={{
+                    backgroundColor: "#2faf90",
+                    color: "#ffffff",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#259a7a")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#2faf90")
+                  }
                   aria-label="Subscribe to CharityCare newsletter"
                 >
-                  Subscribe
+                  {loading ? "..." : "Subscribe"}
                 </button>
               </div>
-              <div
-                className="socials mt-4"
-                aria-label="CharityCare social media links"
-              >
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow CharityCare on Twitter"
+
+              {message && (
+                <p
+                  className="text-sm mt-2"
+                  style={{
+                    color: message.includes("✅") ? "#2faf90" : "#ff6b6b",
+                  }}
                 >
-                  <i className="fa-brands fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow CharityCare on Facebook"
-                >
-                  <i className="fa-brands fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow CharityCare on Instagram"
-                >
-                  <i className="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Subscribe to CharityCare on YouTube"
-                >
-                  <i className="fa-brands fa-youtube" aria-hidden="true"></i>
-                </a>
+                  {message}
+                </p>
+              )}
+
+              {/* Social Icons */}
+              <div className="socials mt-4 flex justify-center md:justify-start gap-3">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                    aria-label={social.label}
+                  >
+                    <i
+                      className={`${social.icon} text-xl`}
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </nav>
       </div>
 
-      <div className="footer-bottom">
+      {/* Footer Bottom */}
+      <div className="footer-bottom mt-12 pt-6 border-t border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-between">
             <div className="w-full md:w-1/2 text-center md:text-left">
-              <p>
-                Copyright &amp; Design By{" "}
-                <span className="highlight">@CharityCare</span>
+              <p className="text-gray-400 text-sm">
+                Copyright & Design By{" "}
+                <span className="text-[#2faf90]">@CharityCare</span>
               </p>
             </div>
             <div className="w-full md:w-1/2 text-center md:text-right mt-2 md:mt-0">
               <ul
-                className="footer-bottom-links"
+                className="flex justify-center md:justify-end gap-4 text-sm"
                 aria-label="Footer bottom links"
               >
                 <li>
-                  <button onClick={() => scrollTo("faq")} aria-label="View FAQ">
+                  <button
+                    onClick={() => scrollTo("faq")}
+                    className="text-gray-400 hover:text-white transition-colors"
+                    aria-label="View FAQ"
+                  >
                     FAQ
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => scrollTo("contact")}
+                    className="text-gray-400 hover:text-white transition-colors"
                     aria-label="View Careers"
                   >
                     Careers
@@ -244,6 +331,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => scrollTo("contact")}
+                    className="text-gray-400 hover:text-white transition-colors"
                     aria-label="Contact CharityCare"
                   >
                     Contact
@@ -251,18 +339,13 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-
-            <p
-              style={{
-                color: "#d9d9d9",
-                fontSize: 12,
-                textAlign: "center",
-                marginTop: 10,
-              }}
-            >
-              This is a demo project built for portfolio purposes only.
-            </p>
           </div>
+
+          <p
+            className="text-gray-500 text-xs text-center mt-4"
+          >
+            This is a demo project built for portfolio purposes only.
+          </p>
         </div>
       </div>
     </footer>
